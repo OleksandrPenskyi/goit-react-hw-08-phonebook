@@ -9,6 +9,8 @@ const itemsReducer = createReducer([], {
   ],
   [contactsActions.deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+  [contactsActions.patchContactSuccess]: (state, { payload }) =>
+    state.map(item => (item.id === payload.id ? payload : item)),
 });
 
 const filterReducer = createReducer('', {

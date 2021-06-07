@@ -7,7 +7,6 @@ const fetchContacts = () => async dispatch => {
 
   try {
     const { data } = await axios.get('/contacts');
-    console.log('contacts:', data);
     dispatch(contactsActions.fetchContactSucess(data));
   } catch (error) {
     dispatch(contactsActions.fetchContactError(error));
@@ -36,9 +35,18 @@ const deleteContact = id => async dispatch => {
   }
 };
 
-// todo
-// const patchContact = id => async dispatch => {
+const patchContact = ({ id, name, number }) => async dispatch => {
+  const editedContact = { name, number };
 
-// }
+  dispatch(contactsActions.patchContactRequest());
 
-export default { fetchContacts, addContact, deleteContact };
+  try {
+    const { data } = await axios.patch(`/contacts/${id}`, editedContact);
+
+    dispatch(contactsActions.patchContactSuccess(data));
+  } catch (error) {
+    dispatch(contactsActions.patchContactError(error.message));
+  }
+};
+
+export default { fetchContacts, addContact, deleteContact, patchContact };

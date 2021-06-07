@@ -1,26 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { contactsOperations } from '../../../redux/contacts';
+import EditContactModal from '../../EditContactModal';
 
 import styles from './ContactListItem.module.css';
 
-const ContactListItem = ({ name, number, id, deleteContact }) => {
-  const handleDelete = () => {
-    deleteContact(id);
+class ContactListItem extends Component {
+  state = {
+    isModalOpen: false,
   };
 
-  return (
-    <li className={styles.Contact}>
-      <span className={styles.Info}>
-        {name}: {number}
-      </span>
-      <button className={styles.Btn} onClick={handleDelete} type="button">
-        Delete
-      </button>
-    </li>
-  );
-};
+  handleToggleModal = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  };
+
+  render() {
+    const { name, number, id, deleteContact } = this.props;
+    const { isModalOpen } = this.state;
+
+    const handleDelete = () => {
+      deleteContact(id);
+    };
+
+    return (
+      <>
+        <li className={styles.Contact}>
+          <span className={styles.Info}>
+            {name}: {number}
+          </span>
+          <button onClick={handleDelete} className={styles.Btn} type="button">
+            Delete
+          </button>
+          <button
+            onClick={this.handleToggleModal}
+            className={styles.Btn}
+            type="button"
+          >
+            Edit
+          </button>
+        </li>
+        {isModalOpen && (
+          <EditContactModal
+            name={name}
+            number={number}
+            id={id}
+            onToggleModal={this.handleToggleModal}
+          />
+        )}
+      </>
+    );
+  }
+}
 
 const mapDispatchToProps = dispath => ({
   deleteContact: id => dispath(contactsOperations.deleteContact(id)),

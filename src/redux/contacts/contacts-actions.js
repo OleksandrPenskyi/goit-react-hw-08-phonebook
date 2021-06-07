@@ -13,6 +13,10 @@ const deleteContactRequest = createAction('contacts/deleteContactRequest');
 const deleteContactSuccess = createAction('contacts/deleteContactSuccess');
 const deleteContactError = createAction('contacts/deleteContactError');
 
+const patchContactRequest = createAction('contacts/patchContactRequest');
+const patchContactSuccess = createAction('contacts/patchContactSuccess');
+const patchContactError = createAction('contacts/patchContactError');
+
 const filterValue = createAction('contacts/filterValue');
 
 export default {
@@ -27,6 +31,10 @@ export default {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
+
+  patchContactRequest,
+  patchContactSuccess,
+  patchContactError,
 
   filterValue,
 };
