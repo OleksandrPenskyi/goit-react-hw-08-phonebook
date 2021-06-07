@@ -4,15 +4,17 @@ import AuthNavigation from './AuthNavigation';
 import UserMenu from './UserMenu';
 import { connect } from 'react-redux';
 
-const AppBar = ({ isLogin }) => (
+import { authSelectors } from '../../redux/auth';
+
+const AppBar = ({ isUserLogin }) => (
   <header>
     <SiteNavigation />
-    {isLogin ? <UserMenu /> : <AuthNavigation />}
+    {isUserLogin ? <UserMenu /> : <AuthNavigation />}
   </header>
 );
 
 const mapStateToProps = state => ({
-  isLogin: !!state.auth.token,
+  isUserLogin: authSelectors.isLogin(state),
 });
 
 export default connect(mapStateToProps)(AppBar);

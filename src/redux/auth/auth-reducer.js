@@ -26,10 +26,23 @@ const errorReducer = createReducer(null, {
   [authActions.authRefreshError]: (_, { payload }) => payload,
 });
 
+const isLoginReducer = createReducer(false, {
+  [authActions.authRegistrationSuccess]: () => true,
+  [authActions.authLoginSuccess]: () => true,
+  [authActions.authLogoutSuccess]: () => false,
+  [authActions.authRefreshSuccess]: () => true,
+
+  [authActions.authRegistrationError]: () => false,
+  [authActions.authLoginError]: () => false,
+  [authActions.authLogoutError]: () => false,
+  [authActions.authRefreshError]: () => false,
+});
+
 const authReducer = combineReducers({
   user: userReducer,
   token: tokenReducer,
   error: errorReducer,
+  isLogin: isLoginReducer,
 });
 
 export default authReducer;
