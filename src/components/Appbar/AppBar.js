@@ -3,14 +3,19 @@ import SiteNavigation from './SiteNavigation';
 import AuthNavigation from './AuthNavigation';
 import UserMenu from './UserMenu';
 import { connect } from 'react-redux';
-
 import { authSelectors } from '../../redux/auth';
+import { Box } from '@material-ui/core';
 
 const AppBar = ({ isUserLogin }) => (
-  <header>
+  <Box
+    component="header"
+    display="flex"
+    alignItems="center"
+    justifyContent="space-between"
+  >
     <SiteNavigation />
     {isUserLogin ? <UserMenu /> : <AuthNavigation />}
-  </header>
+  </Box>
 );
 
 const mapStateToProps = state => ({

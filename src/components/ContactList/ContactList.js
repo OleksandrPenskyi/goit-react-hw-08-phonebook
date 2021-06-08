@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
+import { List } from '@material-ui/core';
 
 import ContactListItem from './ContactListItem';
 
@@ -23,11 +24,11 @@ class ContactList extends Component {
 
   render() {
     return (
-      <ul>
+      <List>
         {this.props.filteredContacts.map(({ name, number, id }) => (
           <ContactListItem name={name} number={number} id={id} key={id} />
         ))}
-      </ul>
+      </List>
     );
   }
 }

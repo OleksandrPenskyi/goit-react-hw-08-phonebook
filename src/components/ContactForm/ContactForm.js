@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
-
-import styles from './ContactForm.module.css';
+import { Button, TextField } from '@material-ui/core';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const INITIAL_STATE = {
   name: '',
@@ -66,40 +66,45 @@ class ContactForm extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.onSubmitAddContact} className={styles.Form}>
-        <label className={styles.Label} htmlFor={randomIdForName}>
-          Name
-        </label>
-        <input
+      <form onSubmit={this.onSubmitAddContact} className="addContactForm">
+        <TextField
           onChange={this.onInputChange}
+          variant="outlined"
+          label="Name"
+          size="small"
           type="text"
           name="name"
           value={name}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
-          className={styles.Input}
+          margin="normal"
           id={randomIdForName}
         />
 
-        <label className={styles.Label} htmlFor={randomIdForNumber}>
-          Number
-        </label>
-        <input
+        <TextField
           onChange={this.onInputChange}
+          variant="outlined"
+          label="Number"
+          size="small"
           type="tel"
           name="number"
           value={number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
-          className={styles.Input}
+          margin="normal"
           id={randomIdForNumber}
         />
 
-        <button type="submit" className={styles.Btn}>
+        <Button
+          type="submit"
+          variant="contained"
+          className="addContactBtn"
+          startIcon={<PersonAddIcon />}
+        >
           Add contact
-        </button>
+        </Button>
       </form>
     );
   }

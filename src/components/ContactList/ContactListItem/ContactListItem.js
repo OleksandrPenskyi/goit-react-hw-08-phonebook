@@ -3,12 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { contactsOperations } from '../../../redux/contacts';
 import EditContactModal from '../../EditContactModal';
+import { ListItem, Box, ButtonGroup, Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
-import styles from './ContactListItem.module.css';
+// import styles from './ContactListItem.module.css';
 
 class ContactListItem extends Component {
   state = {
     isModalOpen: false,
+  };
+
+  styles = {
+    contactsListItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
   };
 
   handleToggleModal = () => {
@@ -25,21 +37,36 @@ class ContactListItem extends Component {
 
     return (
       <>
-        <li className={styles.Contact}>
-          <span className={styles.Info}>
-            {name}: {number}
-          </span>
-          <button onClick={handleDelete} className={styles.Btn} type="button">
-            Delete
-          </button>
-          <button
-            onClick={this.handleToggleModal}
-            className={styles.Btn}
-            type="button"
-          >
-            Edit
-          </button>
-        </li>
+        <ListItem>
+          <Box className="contactsListItem">
+            <Box component="span">
+              Name: <b>{name}</b> | Number: <b>{number}</b>
+            </Box>
+
+            <ButtonGroup>
+              <Button
+                onClick={this.handleToggleModal}
+                type="button"
+                variant="contained"
+                startIcon={<EditIcon />}
+                size="small"
+              >
+                Edit
+              </Button>
+
+              <Button
+                onClick={handleDelete}
+                type="button"
+                variant="contained"
+                startIcon={<DeleteIcon />}
+                size="small"
+              >
+                Delete
+              </Button>
+            </ButtonGroup>
+          </Box>
+        </ListItem>
+
         {isModalOpen && (
           <EditContactModal
             name={name}

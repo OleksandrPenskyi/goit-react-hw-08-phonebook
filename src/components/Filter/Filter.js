@@ -1,30 +1,20 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { contactsSelectors, contactsActions } from '../../redux/contacts';
+import { TextField } from '@material-ui/core';
 
-import styles from './Filter.module.css';
-
-const Filter = ({ onChangeFilter, filter }) => {
-  const randomIdForFilter = uuidv4();
-
-  return (
-    <>
-      <label htmlFor={randomIdForFilter} className={styles.Label}>
-        Find contacts by name
-      </label>
-      <input
-        onChange={onChangeFilter}
-        type="text"
-        name="filter"
-        value={filter}
-        id={randomIdForFilter}
-        className={styles.Input}
-      />
-    </>
-  );
-};
+const Filter = ({ onChangeFilter, filter }) => (
+  <TextField
+    onChange={onChangeFilter}
+    variant="filled"
+    label="Find contacts by name:"
+    size="small"
+    type="text"
+    name="filter"
+    value={filter}
+  />
+);
 
 const mapStateToProps = state => ({
   filter: contactsSelectors.getFilter(state),

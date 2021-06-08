@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Box, TextField, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { authOperations } from '../redux/auth';
 
@@ -23,7 +24,7 @@ class RegisterPage extends Component {
 
   onSubmitRegForm = event => {
     event.preventDefault();
-    // console.log(this.state);
+
     this.props.onRegistration(this.state);
 
     this.setState({ ...initialState });
@@ -32,36 +33,43 @@ class RegisterPage extends Component {
   render() {
     const { name, email, password } = this.state;
     return (
-      <section onSubmit={this.onSubmitRegForm}>
-        <h2>Please, fill the form to registration:</h2>
-        <form>
-          <label htmlFor="nameInput">Name:</label>
-          <input
-            onChange={this.onChangeInput}
-            name="name"
-            value={name}
-            type="text"
-            id="nameInput"
-          />
-          <label htmlFor="nameInput">E-mail:</label>
-          <input
-            onChange={this.onChangeInput}
-            name="email"
-            value={email}
-            type="email"
-            id="nameInput"
-          />
-          <label htmlFor="nameInput">Password:</label>
-          <input
-            onChange={this.onChangeInput}
-            name="password"
-            value={password}
-            type="text"
-            id="nameInput"
-          />
-          <button type="submit">Registration</button>
-        </form>
-      </section>
+      <Box component="section" onSubmit={this.onSubmitRegForm}>
+        <Box component="h2" textAlign="center">
+          Please, fill the form to registration:
+        </Box>
+
+        <Box className="editContactWrapper">
+          <form onSubmit={this.onSubmitRegForm} className="loginRegisterForm">
+            <TextField
+              onChange={this.onChangeInput}
+              label="Name"
+              margin="normal"
+              name="name"
+              value={name}
+              type="text"
+            />
+            <TextField
+              onChange={this.onChangeInput}
+              label="E-mail"
+              margin="normal"
+              name="email"
+              value={email}
+              type="email"
+            />
+            <TextField
+              onChange={this.onChangeInput}
+              label="Password"
+              margin="normal"
+              name="password"
+              value={password}
+              type="text"
+            />
+            <Button type="submit" variant="contained">
+              Registration
+            </Button>
+          </form>
+        </Box>
+      </Box>
     );
   }
 }

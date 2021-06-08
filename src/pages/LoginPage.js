@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Box, TextField, Button } from '@material-ui/core';
 
 import { authOperations } from '../redux/auth';
 
@@ -30,29 +31,35 @@ class LoginPage extends Component {
     const { email, password } = this.state;
 
     return (
-      <section>
-        <h2>Please, fill the form to login:</h2>
-        <form onSubmit={this.onSubmitLoginForm}>
-          <label htmlFor="userEmail">E-mail:</label>
-          <input
+      <Box component="section">
+        <Box component="h2" textAlign="center">
+          Please, fill the form to login:
+        </Box>
+        <form onSubmit={this.onSubmitLoginForm} className="loginRegisterForm">
+          <TextField
             onChange={this.onChangeInput}
+            label="E-mail"
+            margin="normal"
             name="email"
             id="userEmail"
             type="email"
             value={email}
           />
 
-          <label htmlFor="userPassword">Password:</label>
-          <input
+          <TextField
             onChange={this.onChangeInput}
+            label="Password"
+            margin="normal"
             name="password"
             id="userPassword"
             type="text"
             value={password}
           />
-          <button type="submit">Login</button>
+          <Button type="submit" variant="contained">
+            Login
+          </Button>
         </form>
-      </section>
+      </Box>
     );
   }
 }

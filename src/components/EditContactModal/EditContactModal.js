@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
 import { contactsOperations } from '../../redux/contacts';
+import { Box, TextField, Button } from '@material-ui/core';
 
-import styles from './EditContactModal.module.css';
+// import styles from './EditContactModal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -52,33 +53,56 @@ class EditContactModal extends Component {
 
   render() {
     return createPortal(
-      <div onClick={this.handleCloseModal} className={styles.Overlay}>
-        <div className={styles.Modal}>
-          <form onSubmit={this.handleChangesSubmit}>
-            <label htmlFor="nameInput">Name</label>
-            <input
-              onChange={this.handleChangeInput}
-              name="name"
-              id="nameInput"
-              type="text"
-              value={this.state.name}
-            />
+      <Box onClick={this.handleCloseModal} className="overlay">
+        <Box className="modal">
+          <Box component="h3" textAlign="center">
+            Edit contact form
+          </Box>
 
-            <label htmlFor="numberInput">Number</label>
-            <input
-              onChange={this.handleChangeInput}
-              name="number"
-              id="numberInput"
-              type="number"
-              value={this.state.number}
-            />
-            <button onClick={this.handleCancelChange} type="button">
-              Cancel
-            </button>
-            <button type="submit">Save changes</button>
-          </form>
-        </div>
-      </div>,
+          <Box className="editContactWrapper">
+            <form
+              onSubmit={this.handleChangesSubmit}
+              className="editContactForm"
+            >
+              <Box className="editContactInput">
+                <TextField
+                  onChange={this.handleChangeInput}
+                  label="Name"
+                  margin="normal"
+                  name="name"
+                  type="text"
+                  value={this.state.name}
+                  className="editContactBtn"
+                />
+              </Box>
+              <Box className="editContactInput">
+                <TextField
+                  onChange={this.handleChangeInput}
+                  label="Number"
+                  margin="normal"
+                  name="number"
+                  type="number"
+                  value={this.state.number}
+                  className="editContactBtn"
+                />
+              </Box>
+              <Box className="editContactbtnWrapper">
+                <Button type="submit" variant="outlined" size="large">
+                  Save changes
+                </Button>
+              </Box>
+              <Button
+                onClick={this.handleCancelChange}
+                type="button"
+                variant="outlined"
+                size="large"
+              >
+                Cancel
+              </Button>
+            </form>
+          </Box>
+        </Box>
+      </Box>,
       modalRoot,
     );
   }
