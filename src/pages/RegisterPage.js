@@ -39,7 +39,11 @@ class RegisterPage extends Component {
         </Box>
 
         <Box className="editContactWrapper">
-          <form onSubmit={this.onSubmitRegForm} className="loginRegisterForm">
+          <form
+            onSubmit={this.onSubmitRegForm}
+            className="loginRegisterForm"
+            autoComplete="off"
+          >
             <TextField
               onChange={this.onChangeInput}
               label="Name"
@@ -62,7 +66,7 @@ class RegisterPage extends Component {
               margin="normal"
               name="password"
               value={password}
-              type="text"
+              type="password"
             />
             <Button type="submit" variant="contained">
               Registration

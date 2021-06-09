@@ -3,6 +3,7 @@ import Phonebook from '../components/Phonebook';
 import ContactForm from '../components/ContactForm';
 import Filter from '../components/Filter';
 import ContactList from '../components/ContactList';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { authSelectors } from '../redux/auth';
 import { Typography } from '@material-ui/core';
@@ -24,3 +25,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(ContactsPage);
+
+ContactsPage.propTypes = {
+  isUserLogin: PropTypes.bool.isRequired,
+};

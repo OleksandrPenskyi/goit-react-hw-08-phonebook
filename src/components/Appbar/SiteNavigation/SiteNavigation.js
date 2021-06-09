@@ -2,22 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { authSelectors } from '../../../redux/auth';
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
+import PropTypes from 'prop-types';
 import RecentActorsIcon from '@material-ui/icons/RecentActors';
 
-const useStyles = makeStyles({
-  btn: {
-    marginRight: 20,
-  },
-  link: {
-    color: '#fff',
-    textDecoration: 'none',
-  },
-});
+import { SiteNavigationStyles } from './styles';
 
 const SiteNavigation = ({ isUserLogin }) => {
-  const classes = useStyles();
+  const classes = SiteNavigationStyles();
 
   return (
     <Box>
@@ -54,3 +47,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(SiteNavigation);
+
+SiteNavigation.propTypes = {
+  isUserLogin: PropTypes.bool.isRequired,
+};

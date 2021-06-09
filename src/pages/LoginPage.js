@@ -8,7 +8,7 @@ import { authOperations } from '../redux/auth';
 const initialState = { email: '', password: '' };
 
 class LoginPage extends Component {
-  static PpropTypes = {
+  static propTypes = {
     onLogin: PropTypes.func.isRequired,
   };
 
@@ -35,13 +35,16 @@ class LoginPage extends Component {
         <Box component="h2" textAlign="center">
           Please, fill the form to login:
         </Box>
-        <form onSubmit={this.onSubmitLoginForm} className="loginRegisterForm">
+        <form
+          onSubmit={this.onSubmitLoginForm}
+          className="loginRegisterForm"
+          autoComplete="off"
+        >
           <TextField
             onChange={this.onChangeInput}
             label="E-mail"
             margin="normal"
             name="email"
-            id="userEmail"
             type="email"
             value={email}
           />
@@ -51,8 +54,7 @@ class LoginPage extends Component {
             label="Password"
             margin="normal"
             name="password"
-            id="userPassword"
-            type="text"
+            type="password"
             value={password}
           />
           <Button type="submit" variant="contained">

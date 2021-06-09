@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
@@ -61,8 +60,6 @@ class ContactForm extends Component {
   };
 
   render() {
-    const randomIdForName = uuidv4();
-    const randomIdForNumber = uuidv4();
     const { name, number } = this.state;
 
     return (
@@ -79,7 +76,6 @@ class ContactForm extends Component {
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
           margin="normal"
-          id={randomIdForName}
         />
 
         <TextField
@@ -94,7 +90,6 @@ class ContactForm extends Component {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
           margin="normal"
-          id={randomIdForNumber}
         />
 
         <Button

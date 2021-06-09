@@ -1,11 +1,18 @@
+import { Box, Typography } from '@material-ui/core';
 import React from 'react';
 
-import styles from './Error.module.css';
+import { ErrorStyles } from './styles';
 
-const Error = () => (
-  <div>
-    <p className={styles.Text}>Oops, something went wrong!</p>
-  </div>
-);
+const Error = () => {
+  const classes = ErrorStyles();
+
+  return (
+    <Box>
+      <Typography className={classes.text}>
+        Oops, something went wrong!
+      </Typography>
+    </Box>
+  );
+};
 
 export default Error;

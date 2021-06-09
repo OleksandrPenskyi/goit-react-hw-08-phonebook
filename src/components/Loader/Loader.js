@@ -1,9 +1,8 @@
 import Loader from 'react-loader-spinner';
-import styles from './Loader.module.css';
 
 const Loading = () => (
   <Loader
-    className={styles.Loader}
+    className="loader"
     type="TailSpin"
     color="#00BFFF"
     height={200}

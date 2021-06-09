@@ -7,20 +7,16 @@ import { ListItem, Box, ButtonGroup, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-// import styles from './ContactListItem.module.css';
-
 class ContactListItem extends Component {
-  state = {
-    isModalOpen: false,
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    deleteContact: PropTypes.func.isRequired,
   };
 
-  styles = {
-    contactsListItem: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
+  state = {
+    isModalOpen: false,
   };
 
   handleToggleModal = () => {
@@ -85,10 +81,3 @@ const mapDispatchToProps = dispath => ({
 });
 
 export default connect(null, mapDispatchToProps)(ContactListItem);
-
-ContactListItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  deleteContact: PropTypes.func.isRequired,
-};

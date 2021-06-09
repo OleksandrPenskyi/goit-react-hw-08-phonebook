@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { authSelectors } from '../../redux/auth';
 
 const PublicRoute = ({
@@ -26,3 +27,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(PublicRoute);
+
+PublicRoute.propTypes = {
+  isUserLogin: PropTypes.bool.isRequired,
+};

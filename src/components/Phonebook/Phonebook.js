@@ -4,20 +4,12 @@ import { connect } from 'react-redux';
 import Loading from '../Loader';
 import Error from '../Error';
 import { contactsSelectors } from '../../redux/contacts';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  wrapper: {
-    margin: '0 auto',
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 10,
-    width: 600,
-  },
-});
+import { PhonebookStyles } from './styles';
 
 const Phonebook = ({ title, children, isLoading, error }) => {
-  const classes = useStyles();
+  const classes = PhonebookStyles();
 
   return (
     <Box component="section" className={classes.wrapper}>

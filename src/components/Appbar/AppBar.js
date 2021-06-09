@@ -3,6 +3,7 @@ import SiteNavigation from './SiteNavigation';
 import AuthNavigation from './AuthNavigation';
 import UserMenu from './UserMenu';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { authSelectors } from '../../redux/auth';
 import { Box } from '@material-ui/core';
 
@@ -23,3 +24,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(AppBar);
+
+AppBar.propTypes = {
+  isUserLogin: PropTypes.bool.isRequired,
+};

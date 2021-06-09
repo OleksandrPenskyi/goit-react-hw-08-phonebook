@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { contactsOperations } from '../../redux/contacts';
 import { Box, TextField, Button } from '@material-ui/core';
-
-// import styles from './EditContactModal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
 class EditContactModal extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    editContact: PropTypes.func.isRequired,
+  };
+
   state = {
     name: this.props.name,
     number: this.props.number,
@@ -81,7 +87,7 @@ class EditContactModal extends Component {
                   label="Number"
                   margin="normal"
                   name="number"
-                  type="number"
+                  type="text"
                   value={this.state.number}
                   className="editContactBtn"
                 />

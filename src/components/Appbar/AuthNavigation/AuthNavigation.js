@@ -1,19 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  btn: {
-    marginRight: 20,
-  },
-  link: {
-    color: '#fff',
-    textDecoration: 'none',
-  },
-});
+import { AuthNavigationStyles } from './styles';
 
 const AuthNavigation = () => {
-  const classes = useStyles();
+  const classes = AuthNavigationStyles();
 
   return (
     <Box>
